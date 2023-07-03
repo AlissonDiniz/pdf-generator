@@ -1,0 +1,39 @@
+service: pdf-generator
+
+frameworkVersion: "3"
+
+plugins:
+  - serverless-apigw-binary
+
+provider:
+  name: aws
+  region: us-east-1
+  runtime: nodejs16.x
+  memorySize: 2048
+  timeout: 150
+  deploymentBucket:
+    name: destaque-platform-lambdas-pdf-generator
+
+custom:
+  apigwBinary:
+    types:
+      - '*/*'
+
+# layers:
+#   chromium:
+#     package:
+#       artifact: ./chromium.zip
+
+functions:
+  pdf-generator:
+    handler: src/index.handler
+    name: pdf-generator
+    description: Function to generate PDF
+    layers:
+      - arn:aws:lambda:us-east-1:580247275435:layer:LambdaInsightsExtension:16
+    # layers:
+    #   - !Ref ChromiumLambdaLayer
+    events:
+      - http:
+          path: pdf-generator
+          method: POST

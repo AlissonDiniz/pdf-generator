@@ -1,0 +1,20 @@
+{
+  "name": "pdf-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "deploy:dev": "serverless deploy --stage dev",
+    "deploy:prod": "serverless deploy --stage prod"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@sparticuz/chrome-aws-lambda": "14.4.1",
+    "puppeteer-core": "14.4.1"
+  },
+  "devDependencies": {
+    "serverless": "^3.27.0",
+    "serverless-apigw-binary": "^0.4.4"
+  }
+}
